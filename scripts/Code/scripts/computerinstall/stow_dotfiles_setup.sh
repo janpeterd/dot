@@ -17,8 +17,8 @@ mkdir $HOME/school
 rm -f $HOME/.xprofile
 rm -f $HOME/.zprofile
 
-ln -s $HOME/.dot/x11/.config/x11/xprofile $HOME/.xprofile
-ln -s $HOME/.dot/shell/.config/shell/profile $HOME/.zprofile
+ln -s $HOME/dot/x11/.config/x11/xprofile $HOME/.xprofile
+ln -s $HOME/dot/shell/.config/shell/profile $HOME/.zprofile
 
 rm -f $HOME/.bashrc
 
