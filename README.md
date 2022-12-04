@@ -1,3 +1,4 @@
+![gobelijn - my mascot](gobelijn_small.png)
 # .dot
 
 These are my configuration files. It is meant for personal use, but is public so I don't have to enter a password to clone this repo on a fresh pc. All personal info should be encrypted or removed, so you can use these files if you want.
