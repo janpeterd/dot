@@ -1,0 +1,66 @@
+#!/bin/sh
+
+# This script does the following:
+#	Run by itself, set the wallpaper (at X start).
+#	If given a file, set that as the new wallpaper.
+#	If given a directory, choose random file in it.
+
+        # random file is **!!!!!!!!!!!!!!!!!!!!!!!!!!!!BROKEN AT THE MOMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!**
+
+# Location of link to wallpaper link.
+bgloc="${XDG_DATA_HOME:-$HOME/.local/share/}/bg"
+
+bgloc1="$HOME/.local/share/bg1"
+bgloc2="$HOME/.local/share/bg2"
+
+trueloc="$(readlink -f "$1")" &&
+case "$(file --mime-type -b "$trueloc")" in
+	image/* ) ln -sf "$(readlink -f "$1")" "$bgloc" && notify-send -i "$bgloc" "Changing wallpaper..." ;;
+	inode/directory ) ln -sf "$(find "$trueloc" -iregex '.*.\(jpg\|jpeg\|png\|gif\)' -type f | shuf -n 1)" "$bgloc" && notify-send -i "$bgloc" "Random Wallpaper chosen." ;;
+	*) notify-send "Error" "Not a valid image." ; exit 1;;
+esac
+
+onescreen() {
+        xwallpaper --output $screen1 --zoom "$bgloc1"
+}
+
+screenbackground() {
+    xwallpaper --output $chosen --zoom "$bgloc"
+}
+
+# Get all possible displays
+allposs=$(xrandr -q | grep "connected")
+
+# Get all connected screens. (up to 4 screens supported)
+screens=$(echo "$allposs" | awk '/ connected/ {print $1}')
+
+screen1=$(echo $screens | cut -d ' ' -f1) #primary screen -> bgloc
+screen2=$(echo $screens | cut -d ' ' -f2) #bgloc2
+
+automatic () {
+    xwallpaper --output $screen1 --zoom "$bgloc1"
+    xwallpaper --output $screen2 --zoom "$bgloc2"
+}
+
+
+interactive () {
+    # If there's only one screen
+    # [ "$(echo "$screens" | wc -l)" -lt 2 ] &&
+    #     { onescreen "$screen1"; notify-send "💻 Only one screen detected." "Using it in its optimal settings...";  exit ;}
+
+    # Get user choice including multi-monitor and manual selection:
+    chosen=$(printf "%s\\n" "$screens" | dmenu -i -p "Select display for background:") && screenbackground
+    case "$chosen" in
+        "$screen1") ln -sf $trueloc "$HOME/.local/share/bg1" &&  screenbackground ;;
+        "$screen2") ln -sf $trueloc "$HOME/.local/share/bg2" &&  screenbackground ;;
+    esac
+}
+
+echo "$1"
+
+if [ -z "$1" ]
+then
+    automatic
+else
+    interactive
+fi

@@ -1,0 +1,7 @@
+#!/bin/sh
+input_deadline=$(cat ~/.config/.deadline/deadline)
+deadline_name=$(cat ~/.config/.deadline/deadline_name)
+icon=$(cat ~/.config/.deadline/deadline_icon)
+days_until_deadline=$(expr '(' $(date -d $input_deadline +%s) - $(date +%s) + 86399 ')' / 86400)
+
+echo "$icon $days_until_deadline days until $deadline_name"

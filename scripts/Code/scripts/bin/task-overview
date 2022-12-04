@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+import json
+import subprocess
+
+
+subprocess.call(["rm", "-f", "/tmp/taskfile"])
+file = open('/tmp/taskfile', 'w')
+subprocess.call(["task", "+PENDING", "export"], stdout=file)
+file.close()
+file = open('/tmp/taskfile', 'r')
+
+notify_text = "PENDING tasks\n--------------\n"
+
+data = json.load(file)
+for i in range(len(data)):
+    taskname = data[i]['description']
+    notify_text += "\nTask: " + taskname
+
+    if 'due' in data[i]:
+        with_due = True
+        task_due_date = data[i]['due']
+
+        # convert due date from iso-8601 format to readable format,
+        # default Taskwarrior format is: YYYYMMDDTHHMMSSZ
+
+        due_year = task_due_date[:4]
+        due_month = task_due_date[4:6]
+        due_day = task_due_date[6:8]
+        due_hour = task_due_date[9:11]
+        due_minute = task_due_date[11:13]
+        due_second = task_due_date[13:15]
+
+        full_date_readable = due_day + "-" +\
+            due_month + "-" +\
+            due_day + ", " +\
+            due_hour + ":" +\
+            due_minute + ":" +\
+            due_second
+        notify_text += "\n- With due date " + full_date_readable
+
+    if 'tags' in data[i]:
+        tags = data[i]['tags']
+        with_tags = True
+
+        notify_text += "\n- With tag(s) "
+        for j in tags:
+            notify_text += j + ", "
+
+    if 'project' in data[i]:
+        project = data[i]['project']
+        with_project = True
+        notify_text += "\n- In project " + project
+
+    if 'urgency' in data[i]:
+        urgency = data[i]['urgency']
+        with_urgency = True
+        notify_text += "\n- With urgency " + str(urgency)
+    notify_text += "\n--------------\n"
+file.close()
+
+print(notify_text)

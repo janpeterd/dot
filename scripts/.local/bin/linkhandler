@@ -1,0 +1,30 @@
+#!/bin/sh
+		#yt-dlp -q --write-thumbnail --skip-download "$1" -o /tmp/youtube-thumbnail  && setsid -f mpv -quiet /tmp/youtube-thumbnail.* "$1" --ytdl-raw-options=sub-lang=en,write-auto-sub=,write-sub= >/dev/null 2>&1 ;;
+
+# Feed script a url or file location.
+# If an image, it will view in nsxiv,
+# if a video or gif, it will view in mpv
+# (jp) if the video is a youtube video, it will show the thumbnail before playing video
+# if a music file or pdf, it will download,
+# otherwise it opens link in browser.
+
+# If no url given. Opens browser. For using script as $BROWSER.
+[ -z "$1" ] && { "$BROWSER"; exit; }
+
+case "$1" in
+	*mkv|*webm|*mp4|*ogv|*hooktube.com*|*bitchute.com*|*videos.lukesmith.xyz*|*odysee.com*|*twitch.tv/videos/*)
+		setsid -f mpv -quiet "$1" >/dev/null 2>&1 ;;
+	*youtube.com/watch*|*youtube.com/v*|*youtube.com/playlist*|*youtu.be*)
+	# yt-dlp -q --write-thumbnail --skip-download "$1" -o /tmp/youtube-thumbnail  && setsid -f mpv -quiet /tmp/youtube-thumbnail.* "$1" --ytdl-raw-options=sub-lang=en,write-auto-sub=,write-sub= >/dev/null 2>&1 ;;
+	setsid -f mpv -quiet "$1" --ytdl-raw-options=sub-lang=en,write-auto-sub=,write-sub= >/dev/null 2>&1 ;;
+	*png|*jpg|*jpe|*jpeg|*gif|http://100.99.155.30:7777/pic/*)
+		curl -sL "$1" > "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" && nsxiv -a "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 & ;;
+	https://scontent.xx.fbcdn.net/*\.jpg*)
+		curl -sL "$1" > "/tmp/fb-img.jpg" && nsxiv -a /tmp/fb-img.jpg >/dev/null 2>&1 &;;
+	*pdf|*cbz|*cbr)
+		curl -sL "$1" > "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")" && zathura "/tmp/$(echo "$1" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 & ;;
+	*mp3|*flac|*opus|*mp3?source*)
+		qndl "$1" 'curl -LO'  >/dev/null 2>&1 ;;
+	*)
+		[ -f "$1" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$1" >/dev/null 2>&1 || setsid -f "$BROWSER" "$1" >/dev/null 2>&1
+esac

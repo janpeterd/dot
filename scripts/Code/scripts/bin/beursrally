@@ -1,0 +1,64 @@
+#!/bin/bash
+
+current_day=$(date +%w)
+current_hour=$(date +%H)
+current_min=$(date +%M)
+is_open=false
+
+# euronext : 9 - 17:30
+# nasdaq & ny : 15:30 - 22:00
+
+# function to open stuff up
+trading_setup () {
+    chromium --new-window "https://docs.google.com/spreadsheets/d/1VKDGYtQnzTfH8oU7fM_Cu65Bj7cbhixUAasXo7tTM9g" &
+    sleep 2 && xdotool key Shift+Super_L+Left  # gross line of code to move the window to my other monitor
+    chromium --new-window "https://beursrally-game.tijd.be/Service/Game/Dashboard/MyPortfolio#navGame" "https://www.tijd.be/beursrally/game" &
+    firefox-beta  --new-window "https://www.messenger.com/" --new-window "https://tijd.be" &
+}
+
+
+if [[ $current_day == 6 || $current_day == 7 ]]; then
+    notify-send -i  "/home/jp/Code/scripts/beursrally_pics/closed.png" "Exchange CLOSED" "Enjoy your weekend. All exchanges are closed.";
+else
+    if (( $current_hour >= 9 && current_hour <= 17 )); then
+        if (( $current_hour == 17 && $current_min >= 30 ));  then
+            notify-send -i "/home/jp/Code/scripts/beursrally_pics/closed.png" "Exchange just Closed" "Euronext Amsterdam, Brussels, Paris closed $(echo $current_min - 30 | bc) minutes ago.";
+        elif [[ $current_hour == 17 && $current_min < 30 ]];  then
+            notify-send -i "/home/jp/Code/scripts/beursrally_pics/closed.png" "Exchange closing SOON" "Euronext Amsterdam, Brussels, Paris is closing in $(echo 30 - $current_min | bc) minutes!"
+        else
+            notify-send -i "/home/jp/Code/scripts/beursrally_pics/rocket.png" "Exchange OPEN" "Euronext Amsterdam, Brussels, Paris are currently open!";
+            is_open=true;
+        fi
+    else
+        notify-send -i "/home/jp/Code/scripts/beursrally_pics/closed.png" "Exchange CLOSED" "Euronext Amsterdam, Brussels, Paris are currently closed."
+    fi
+
+    if (($current_hour >= 15 && $current_hour <= 22)); then
+        if [[ $current_hour == 15 && $current_min < 30 ]];  then
+            notify-send -i "/home/jp/Code/scripts/beursrally_pics/closed.png" "Exchange Closed, but OPENING SOON" "NASDAQ and NYSE opening in $(echo 30 - $current_min | bc) minutes.";
+            is_open=true;
+        else
+            notify-send -i "/home/jp/Code/scripts/beursrally_pics/rocket.png" "Exchange OPEN" "NASDAQ and NYSE are currently open!";
+            is_open=true;
+        fi
+    else
+        notify-send -i "/home/jp/Code/scripts/beursrally_pics/closed.png" "Exchange CLOSED" "NASDAQ and NYSE are currently closed."
+    fi
+fi
+
+# only return the openingshours when -h option is given
+if [[ $1 == "-h" ]]; then
+    is_open=false;
+    notify-send -t 10000 "Opening HOURS"\
+    "NASDAQ and NYSE are open from\n    - 15:30 - 22:00\nEuronext (Am, Bru, Par) are open from\n    - 09:00 - 17:30"
+fi
+# only open browser with beursrally page
+if [[ $1 == "-b" ]]; then
+    is_open=false;
+    chromium --new-window "https://beursrally-game.tijd.be/Service/Game/Dashboard/MyPortfolio#navGame" "https://www.tijd.be/beursrally/game" &
+fi
+
+# run setup
+if  $is_open ; then
+    trading_setup;
+fi

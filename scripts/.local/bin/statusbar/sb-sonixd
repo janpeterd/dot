@@ -1,0 +1,30 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+    1) sonixd-notify ;;
+    2) playerctl -p Sonixd play-pause ;;
+    3) notify-send "🎧 Sonixd module" "\- Shows Navidrome server song playing.
+- ⏸ when paused.
+- Left click shows notification with song and cover
+- Middle click pauses.
+- Scroll changes track.";;
+    4) playerctl -p Sonixd previous ;;
+    5) playerctl -p Sonixd next ;;
+esac
+
+# script using "playerctl"
+title=$(playerctl -p Sonixd metadata title)
+artist=$(playerctl -p Sonixd metadata artist)
+sonixd_status=$(playerctl -p Sonixd status)
+
+if [ -n "$title" ] || [ -n "$artist" ]; then
+    if [ "$sonixd_status" == "Paused" ]; then
+            echo "$title - $artist ⏸️"
+    elif [ "$sonixd_status" == "Playing" ]; then
+            echo "$title - $artist"
+    else
+            echo ""
+    fi
+else
+    echo ""
+fi

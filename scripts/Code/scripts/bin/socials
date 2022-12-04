@@ -1,0 +1,3 @@
+#!/bin/bash
+
+firefox-beta "https://www.messenger.com" "https://web.whatsapp.com/" "https://discord.com/channels/@me" "https://teams.microsoft.com/" >/dev/null

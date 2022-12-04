@@ -1,0 +1,12 @@
+#!/bin/bash
+wget $(sp art) -O /tmp/Spotify-cover.jpg >/dev/null 2>&1 &
+sleep 0.5
+
+title=$(playerctl -p spotify metadata title)
+artist=$(playerctl -p spotify metadata artist)
+album=$(playerctl -p spotify metadata album)
+spotify_status=$(playerctl -p spotify status)
+
+
+
+notify-send -i /tmp/Spotify-cover.jpg Spotify-info "Title: $title,\nArtist: $artist,\nAlbum: $album,\nStatus: $spotify_status"
