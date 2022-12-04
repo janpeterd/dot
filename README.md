@@ -1,4 +1,4 @@
-# .dot
+# dot
 
 
 <p align="center">
@@ -17,13 +17,13 @@ To install the dotfiles on your system run:
 
 ~~~
 cd ~
-git clone https://github.com/janpeterd/.dot.git
-cd .dot
+git clone https://github.com/janpeterd/dot.git
+cd dot
 sh scripts/Code/scripts/stow_dotfiles_setup.sh
 stow */
 ~~~
 
-*It is important that the .dot folder is located in your **home directory**!*
+*It is important that the dot folder is located in your **home directory**!*
 
 
 ## Extra

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+python /home/jp/Code/scripts/add_task.py
+tail -1 /tmp/add_task.txt | sh

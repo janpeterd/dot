@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [[ $1 == "-s" ]];  # small
+then
+    xdotool type "dhallé";
+elif [[ $1 == "-f" ]];  # full name / including first name
+then
+    xdotool type "Jan-Peter Dhallé";
+elif [[ $1 == "-e" ]];  # email
+then
+    xdotool type "janpeter.dhalle@gmail.com";
+elif [[ $1 == "-nr" ]];  # email
+then
+    xdotool type "r0836604";
+elif [[ $1 == "-nre" ]];  # email
+then
+    xdotool type "r0836604@student.thomasmore.be";
+else
+    xdotool type "Dhallé";
+fi
