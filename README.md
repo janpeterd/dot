@@ -1,7 +1,10 @@
-<p align="center">
-  <img width="100" height="100" src="gobelijn_small.png">
-</p>
 # .dot
+
+
+<p align="center">
+  <img width="250" height="250" src="gobelijn_small.png">
+</p>
+
 
 These are my configuration files. It is meant for personal use, but is public so I don't have to enter a password to clone this repo on a fresh pc. All personal info should be encrypted or removed, so you can use these files if you want.
 
