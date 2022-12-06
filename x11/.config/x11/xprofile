@@ -6,12 +6,13 @@
 xset s off -dpms & # disable power management (monitor will stay on)
 setbg &			# set the background with the `setbg` script
 xrandr --output HDMI-A-1 --mode 1920x1080 --rate 74.97 --dpi 96 --set TearFree on --primary --output DisplayPort-1 --mode 1920x1080 --rate 144.00 --dpi 96 --set TearFree on --right-of HDMI-A-1 --noprimary &
-# xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
+xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment to use Xresources colors/settings on startup
 picom --experimental-backend  & # for nice blur, animations and rounded corners!
 remaps &		# run the remaps script, switching caps/esc and more; check it for more info
 nohup >/dev/null emacs --fg-daemon &
+sleep 10 && aw-qt &
 
-autostart="mpd dunst unclutter pipewire udiskie nm-applet gotify-desktop musnify-mpd thunderbird"
+autostart="mpd dunst unclutter pipewire udiskie nm-applet blueman-applet gotify-desktop musnify-mpd thunderbird"
 
 for program in $autostart; do
 	pidof -s "$program" || "$program" &

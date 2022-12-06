@@ -1,3 +1,0 @@
-#!/bin/bash
-
-nvim "$(find / -type f 2>/dev/null | fzf)"
