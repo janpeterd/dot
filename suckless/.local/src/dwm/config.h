@@ -75,6 +75,8 @@ static const Rule rules[] = {
 	*/
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
 	{ "thunderbird",      NULL,        NULL,       	    1 << 8,       0,           0,         0,        -1 },
+	{ "discord",      NULL,        NULL,       	    1 << 7,       0,           0,         0,        -1 },
+	{ "Spotify",      NULL,        NULL,       	    1 << 6,       0,           0,         0,        -1 },
 	{ TERMCLASS,  NULL,       NULL,       	    0,            0,           1,         0,        -1 },
 	{ NULL,       NULL,       "Event Tester",   0,            0,           0,         1,        -1 },
 	{ TERMCLASS,      "bg",        NULL,       	    1 << 7,       0,           1,         0,        -1 },

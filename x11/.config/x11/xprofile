@@ -12,7 +12,7 @@ remaps &		# run the remaps script, switching caps/esc and more; check it for mor
 nohup >/dev/null emacs --fg-daemon &
 sleep 10 && aw-qt &
 
-autostart="mpd dunst unclutter pipewire udiskie nm-applet blueman-applet gotify-desktop musnify-mpd thunderbird"
+autostart="mpd dunst unclutter pipewire udiskie nm-applet blueman-applet gotify-desktop musnify-mpd spotify thunderbird discord"
 
 for program in $autostart; do
 	pidof -s "$program" || "$program" &

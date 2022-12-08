@@ -6,6 +6,7 @@ cmap ;D /home/jp/Downloads
 cmap ;co /home/jp/Code
 cmap ;re /home/jp/Code/repos
 cmap ;isa /home/jp/Code/repos/isabel-dhalle
+cmap ;dot /home/jp/dot
 cmap ;web /home/jp/Code/repos/2022_2023_1itf_02_webdesign_essentials-janpeterd
 cmap ;proj /home/jp/Code/Projects
 cmap ;scr /home/jp/Code/scripts
@@ -18,7 +19,6 @@ cmap ;mn /mnt
 cmap ;med /media
 cmap ;pp /home/jp/Pictures
 cmap ;sc /home/jp/.local/bin
-cmap ;src /home/jp/.local/src
 cmap ;vv /home/jp/Videos
 cmap ;hom /srv/http/homepage
 cmap ;http /srv/http
