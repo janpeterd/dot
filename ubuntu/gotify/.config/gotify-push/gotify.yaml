@@ -1,9 +1,0 @@
-# Url of the Gotify server (including the protocol to use)
-url: 'http://192.168.1.138:9123'
-# Default notification parameters
-default:
-  token: 'A5wv1wOCsIV_Sdl'
-  priority: 5
-# Token map to map keys to tokens
-tokenMap:
-  task: 'ADUZy7.jv0VVRR3'
