@@ -19,7 +19,8 @@ To install the dotfiles on your system run:
 cd ~
 git clone https://github.com/janpeterd/dot.git
 # before stowing make sure none of the files or directories in the dotfiles repo exist on your system.
-stow */
+cd dot/arch # ubuntu if you want ubuntu
+stow -t ~ */
 ```
 
 *It is important that the dot folder is located in your **home directory**!*
