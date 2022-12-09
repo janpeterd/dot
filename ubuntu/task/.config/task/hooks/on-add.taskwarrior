@@ -1,0 +1,70 @@
+#!/bin/env python3
+
+import subprocess
+import json
+import sys
+
+added_task = json.loads(sys.stdin.readline())
+task_name = added_task['description']
+notify_text = "Added " + task_name + "!"
+with_due = False
+with_tags = False
+with_project = False
+with_priority = False
+
+
+if 'due' in added_task:
+    with_due = True
+    task_due_date = added_task['due']
+    # convert due date from iso-8601 format to readable format, default taskwarrior format is: YYYYMMDDTHHMMSSZ
+    due_year = task_due_date[:4]
+    due_month = task_due_date[4:6]
+    due_day = task_due_date[6:8]
+    due_hour = task_due_date[9:11]
+    due_minute = task_due_date[11:13]
+    due_second = task_due_date[13:15]
+
+    full_date_readable = due_day + "-" +\
+        due_month + "-" +\
+        due_year + ", " +\
+        due_hour + ":" +\
+        due_minute + ":" +\
+        due_second
+
+    notify_text += "\n- With due date " + full_date_readable
+
+
+if 'tags' in added_task:
+    tags = added_task['tags']
+    with_tags = True
+
+    notify_text += "\n- With tag(s) "
+    for i in tags:
+        notify_text += i + ", "
+
+
+if 'project' in added_task:
+    project = added_task['project']
+    with_project = True
+    notify_text += "\n- In project " + project
+
+
+if 'priority' in added_task:
+    priority = added_task['priority']
+    with_priority = True
+    notify_text += "\n- With priority " + priority
+
+
+print(json.dumps(added_task))
+
+subprocess.call(["gotify-push",
+                 "-k",
+                 "task",
+                 "-t",
+                 "Task Added!",
+                 "-m",
+                 notify_text
+                 ])
+print(notify_text)
+
+sys.exit(0)
