@@ -37,9 +37,3 @@ To decrypt, I need to import my private gpg-key via my password manager.
 ``` sh
 gpg --import my-key.key
 ```
-
-
-
-## TODO
-* [ ] Modify folder structure to have support for different configurations (different distros, etc.)
-  * [ ] for example a folder arch with all arch dotfiles inside, and 'stow arch' would install these dotfiles
