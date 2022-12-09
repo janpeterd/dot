@@ -15,13 +15,12 @@ These are my configuration files. It is meant for personal use, but is public so
 ## Installation
 To install the dotfiles on your system run:
 
-~~~
+``` sh
 cd ~
 git clone https://github.com/janpeterd/dot.git
-cd dot
-sh scripts/Code/scripts/stow_dotfiles_setup.sh
+# before stowing make sure none of the files or directories in the dotfiles repo exist on your system.
 stow */
-~~~
+```
 
 *It is important that the dot folder is located in your **home directory**!*
 
@@ -33,3 +32,13 @@ stow */
 
 #### Decrypt
 To decrypt, I need to import my private gpg-key via my password manager.
+
+``` sh
+gpg --import my-key.key
+```
+
+
+
+## TODO
+* [ ] Modify folder structure to have support for different configurations (different distros, etc.)
+  * [ ] for example a folder arch with all arch dotfiles inside, and 'stow arch' would install these dotfiles
