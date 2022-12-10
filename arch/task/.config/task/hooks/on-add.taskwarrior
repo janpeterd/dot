@@ -57,6 +57,14 @@ if 'priority' in added_task:
 
 print(json.dumps(added_task))
 
+
+subprocess.call(["notify-send",
+                 "-i",
+                 "~/.config/task/img/added.jpg",
+                 "Task Added!",
+                 notify_text
+                 ])
+
 subprocess.call(["gotify-push",
                  "-k",
                  "task",

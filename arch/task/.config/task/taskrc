@@ -38,3 +38,5 @@ hooks.location=~/.config/task/hooks
 #include solarized-light-256.theme
 #include no-color.theme
 news.version=2.6.0
+report.minimal.labels=ID,Project,Description
+report.minimal.columns=id,project,description.count
