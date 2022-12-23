@@ -45,7 +45,8 @@ cmd open ${{
 	application/vnd.ms-powerpoint) loimpress $fx ;;
 
 	image/vnd.djvu|application/pdf|application/octet-stream|application/postscript) setsid -f zathura $fx >/dev/null 2>&1 ;;
-        text/*|application/json|inode/x-empty) $EDITOR $fx;;
+        # text/*|application/json|inode/x-empty) $EDITOR $fx;;
+        text/*|application/json|inode/x-empty) setsid -f emacsclient -c -a 'emacs' $f;;
 	image/x-xcf) setsid -f gimp $f >/dev/null 2>&1 ;;
 	image/svg+xml) display -- $f ;;
 	image/*) rotdir $f | grep -i "\.\(png\|jpg\|jpeg\|gif\|webp\|tif\|ico\)\(_large\)*$" |
@@ -124,7 +125,8 @@ map <c-s> set hidden!
 map <enter> shell
 map x $$f
 map X !$f
-map o &mimeopen $f
+# map o &mimeopen $f
+map o $cat /dev/null|xclip -i && setsid -f nautilus $f >/dev/null
 map O $mimeopen --ask $f
 
 map A rename # at the very end
@@ -138,7 +140,7 @@ map b $setbg $f
 map <c-e> down
 map <c-y> up
 map V push :!nvim<space>
-map <c-c> !emacsclient -c -a 'emacs' $f
+map <c-c> $setsid -f emacsclient -c -a 'emacs' $f
 
 map W $setsid -f $TERMINAL >/dev/null 2>&1
 

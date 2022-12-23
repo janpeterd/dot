@@ -1,0 +1,90 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("Videos"
+ (filename . "/data/harddrive/Videos/")
+ (front-context-string . "funny\n  drwxrwxr")
+ (rear-context-string . "0K Oct 26 17:27 ")
+ (position . 121))
+("Webdevelopment"
+ (filename . "~/school/ITF1/SEM1/WebDevelopment/")
+ (front-context-string . "exercises\n  drwx")
+ (rear-context-string . "0K Dec  1 10:35 ")
+ (position . 137))
+("ProfessionalSkills"
+ (filename . "~/school/ITF1/SEM1/ProfessionalSkills/")
+ (front-context-string . "cv en motivatieb")
+ (rear-context-string . "0K Nov 29 13:53 ")
+ (position . 141))
+("NetworkEssentials"
+ (filename . "~/school/ITF1/SEM1/NetworkEssentials/")
+ (front-context-string . "Lab1\n  drwxr-xr-")
+ (rear-context-string . "0K Nov 29 13:50 ")
+ (position . 142))
+("LinuxEssentials"
+ (filename . "~/school/ITF1/SEM1/LinuxEssentials/")
+ (front-context-string . "chapter0\n  drwxr")
+ (rear-context-string . "0K Nov 29 13:44 ")
+ (position . 140))
+("ITEssentials"
+ (filename . "~/school/ITF1/SEM1/ITEssentials/")
+ (front-context-string . "individueel proj")
+ (rear-context-string . "0K Dec 13 22:06 ")
+ (position . 193))
+("English"
+ (filename . "~/school/ITF1/SEM1/English/")
+ (front-context-string . "Auxiliary verbs_")
+ (rear-context-string . "0K Oct 14 09:59 ")
+ (position . 131))
+("ApplicationDevInPython"
+ (filename . "~/school/ITF1/SEM1/ApplicationDevInPython/")
+ (front-context-string . "Code\n  drwxr-xr-")
+ (rear-context-string . "0K Dec 14 16:05 ")
+ (position . 146))
+("school"
+ (filename . "~/school/ITF1/SEM1/")
+ (front-context-string . "ITEssentials\n  d")
+ (rear-context-string . "0K Dec 13 13:35 ")
+ (position . 240))
+("synced"
+ (filename . "~/synced/")
+ (front-context-string . "Sync-krant\n  drw")
+ (rear-context-string . "0K Nov 30 15:05 ")
+ (position . 114))
+("Sync"
+ (filename . "~/Sync/")
+ (front-context-string . ".stfolder\n  drwx")
+ (rear-context-string . "0K Jul 14 19:21 ")
+ (position . 112))
+("Pictures"
+ (filename . "/data/harddrive/Pictures/")
+ (front-context-string . "London\n  drwxrwx")
+ (rear-context-string . "6K Jul 24 12:35 ")
+ (position . 122))
+("dot"
+ (filename . "~/dot/")
+ (front-context-string . "arch\n  drwxr-xr-")
+ (rear-context-string . "0K Dec  9 14:01 ")
+ (position . 112))
+("Downloads"
+ (filename . "~/Downloads/")
+ (front-context-string . "tor\n  drwx------")
+ (rear-context-string . "0K Dec  5 16:06 ")
+ (position . 190))
+("Documents"
+ (filename . "~/Documents/")
+ (front-context-string . "Ableton live Sui")
+ (rear-context-string . "0K Jul 14 22:58 ")
+ (position . 119))
+("repos"
+ (filename . "~/Code/repos/")
+ (front-context-string . "2022_2023_1itf_0")
+ (rear-context-string . "0K Oct  4 20:06 ")
+ (position . 118))
+("Code"
+ (filename . "~/Code/")
+ (front-context-string . "repos\n  drwxr-xr")
+ (rear-context-string . "0K Dec 13 22:51 ")
+ (position . 224))
+)

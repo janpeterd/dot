@@ -267,11 +267,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Page_Down,	shifttag,	{ .i = +1 } },
 	{ MODKEY,			XK_Insert,	spawn,		SHCMD("xdotool type $(grep -v '^#' ~/.local/share/larbs/snippets | dmenu -i -l 50 | cut -d' ' -f1)") },
 
-	/* { MODKEY,			XK_F1,		spawn,		SHCMD("groff -mom /usr/local/share/dwm/larbs.mom -Tpdf | zathura -") }, */
-	/* { MODKEY,			XK_F2,		spawn,		{.v = (const char*[]){ "tutorialvids", NULL } } }, */
 
 	{ MODKEY,			XK_F1,		spawn,		SHCMD("picom-trans -c --toggle 100") },
-	{ MODKEY,			XK_F2,		spawn,		{.v = (const char*[]){ "tutorialvids", NULL } } },
+	{ MODKEY,			XK_F2,		spawn,		SHCMD("picom-trans -c +5") },
+	{ MODKEY|ShiftMask,			XK_F2,		spawn,		SHCMD("picom-trans -c -5") },
 
 
 	{ MODKEY,			XK_minus,	spawn,		SHCMD("pamixer -d 5; kill -44 $(pidof dwmblocks)") },

@@ -33,7 +33,7 @@
 ;; `load-theme' function. This is the default:
 
 (setq doom-theme 'doom-gruvbox
-      fancy-splash-image "/home/jp/.doom.d/gobelijn_small.png")
+      fancy-splash-image "~/.doom.d/gobelijn_small.png")
 
 
 (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size 15)
@@ -181,3 +181,15 @@
 (after! vterm
   (set-popup-rule! "*doom:vterm-popup:main" :size 0.20 :vslot -4 :select t :quit nil :ttl 0)
   )
+
+(require 'platformio-mode)
+
+;; Enable ccls for all c++ files, and platformio-mode only
+;; when needed (platformio.ini present in project root).
+(add-hook 'c++-mode-hook (lambda ()
+                           (lsp-deferred)
+                           (platformio-conditionally-enable)))
+
+
+
+(setq bookmark-default-file "~/.doom.d/bookmarks")

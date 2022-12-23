@@ -220,7 +220,7 @@ ResourcePref resources[] = {
 		{ "st-borderpx",     INTEGER, &borderpx },
 		{ "cwscale",      FLOAT,   &cwscale },
 		{ "chscale",      FLOAT,   &chscale },
-		{ "alpha",        FLOAT,   &alpha },
+		/* { "alpha",        FLOAT,   &alpha }, */
 		{ "alphaOffset",  FLOAT,   &alphaOffset },
 };
 
