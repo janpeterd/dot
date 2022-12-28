@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("dwm config"
+(("org-capture-last-stored"
+ (filename . "~/org/journal.org")
+ (front-context-string . "**** [2022-12-31")
+ (rear-context-string . "-12-31 Saturday\n")
+ (position . 56))
+("dwm config"
  (filename . "~/dot/arch/suckless/.local/src/dwm/config.h")
  (front-context-string . "etails. */\n\n/* C")
  (rear-context-string . "ht and license d")

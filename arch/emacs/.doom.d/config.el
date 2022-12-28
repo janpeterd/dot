@@ -137,7 +137,7 @@
       :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
 
 
-;; TRANSPARANCY (toggle with 'C-c t')
+;; TRANSPARANCY
 (set-frame-parameter (selected-frame) 'alpha '(90 . 85))
 (add-to-list 'default-frame-alist '(alpha . (90 . 85)))
 
@@ -158,37 +158,31 @@
       :prefix ("t" . "toggle")
       :desc "toggle transparency"       "t" #'toggle-transparency)
 
-;; IDE-layout (toggle eshell and treemacs)
 
+;; IDE-layout (toggle eshell and treemacs)
 (defun ide_layout ()
   (interactive)
   (+vterm/toggle () )
   (minimap-mode)
   (treemacs))
-
-
 (map! :map ide-layout
       :leader
       :prefix ("t" . "toggle")
       :desc "toggle IDE-layout"        "i" #'ide_layout)
 
 (setq ispell-dictionary "english")
-
 (setq treemacs-width 26)
-
-(setq vterm-shell "/bin/bash")
 
 (after! vterm
   (set-popup-rule! "*doom:vterm-popup:main" :size 0.20 :vslot -4 :select t :quit nil :ttl 0)
+  (setq vterm-shell "/bin/bash")
   )
-
-(require 'platformio-mode)
 
 ;; Enable ccls for all c++ files, and platformio-mode only
 ;; when needed (platformio.ini present in project root).
 (add-hook 'c++-mode-hook (lambda ()
-                           (lsp-deferred)
-                           (platformio-conditionally-enable)))
+        (lsp-deferred)
+        (platformio-conditionally-enable)))
 
 
 

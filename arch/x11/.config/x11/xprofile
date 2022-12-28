@@ -10,7 +10,7 @@ xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/x11/xresources & xrdbpid=$!	# Uncomment t
 gsettings set org.gnome.desktop.interface color-scheme prefer-dark &
 picom --experimental-backend  & # for nice blur, animations and rounded corners!
 remaps &		# run the remaps script, switching caps/esc and more; check it for more info
-emacs --fg-daemon &
+jellyfin-mpv-shim &		# jellyfin mpv cast client
 sleep 10 && aw-qt &
 
 autostart="mpd dunst unclutter pipewire udiskie nm-applet blueman-applet gotify-desktop musnify-mpd thunderbird discord"
