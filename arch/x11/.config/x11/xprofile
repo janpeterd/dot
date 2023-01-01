@@ -15,8 +15,10 @@ sleep 10 && aw-qt &
 echo "$(cat /etc/hostname)" > /home/jp/hostnametest
 if [[ "$(cat /etc/hostname)" == "larch" ]]; then
 	brightnessctl s 100 &		# max brightness
+	jellyfin-wrap &		# jellyfin shim via tailscale when available
 elif [[ "$(cat /etc/hostname)" == "archlinux" ]]; then
 	xrandr --output HDMI-A-1 --mode 1920x1080 --rate 74.97 --dpi 96 --set TearFree on --primary --output DisplayPort-1 --mode 1920x1080 --rate 144.00 --dpi 96 --set TearFree on --right-of HDMI-A-1 --noprimary &
+	jellyfin-wrap &		# jellyfin shim via tailscale when available
 fi
 
 autostart="mpd dunst unclutter pipewire udiskie nm-applet blueman-applet gotify-desktop musnify-mpd thunderbird"
