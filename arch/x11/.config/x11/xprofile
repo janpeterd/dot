@@ -12,10 +12,10 @@ remaps &		# run the remaps script, switching caps/esc and more; check it for mor
 sleep 10 && aw-qt &
 
 # Per host:
-echo "$(hostname)" > /home/jp/hostnametest
-if [[ "$(hostname)" == "larch" ]]; then
+echo "$(cat /etc/hostname)" > /home/jp/hostnametest
+if [[ "$(cat /etc/hostname)" == "larch" ]]; then
 	brightnessctl s 100 &		# max brightness
-elif [[ "$(hostname)" == "archlinux" ]]; then
+elif [[ "$(cat /etc/hostname)" == "archlinux" ]]; then
 	xrandr --output HDMI-A-1 --mode 1920x1080 --rate 74.97 --dpi 96 --set TearFree on --primary --output DisplayPort-1 --mode 1920x1080 --rate 144.00 --dpi 96 --set TearFree on --right-of HDMI-A-1 --noprimary &
 fi
 
