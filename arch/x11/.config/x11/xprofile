@@ -12,7 +12,6 @@ remaps &		# run the remaps script, switching caps/esc and more; check it for mor
 sleep 10 && aw-qt &
 
 # Per host:
-echo "$(cat /etc/hostname)" > /home/jp/hostnametest
 if [[ "$(cat /etc/hostname)" == "larch" ]]; then
 	brightnessctl s 100 &		# max brightness
 	jellyfin-wrap &		# jellyfin shim via tailscale when available

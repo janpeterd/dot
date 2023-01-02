@@ -33,7 +33,7 @@
 ;; `load-theme' function. This is the default:
 
 (setq doom-theme 'doom-gruvbox
-      fancy-splash-image "~/.doom.d/gobelijn_small.png")
+      fancy-splash-image "~/.doom.d/gnu.png")
 
 
 (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size 15)
@@ -42,9 +42,9 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type "relative"
+(setq display-line-numbers-type 'relative
       display-time-24hr-format t
-      display-time-day-and-date t)
+      display-time-day-and-date nil)
 
 (display-time)
 
