@@ -3,10 +3,10 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-capture-last-stored"
- (filename . "~/org/journal.org")
- (front-context-string . "**** [2022-12-31")
- (rear-context-string . "-12-31 Saturday\n")
- (position . 56))
+ (filename . "~/Documents/Notes/journal.org")
+ (front-context-string . "**** [2023-01-02")
+ (rear-context-string . "23-01-02 Monday\n")
+ (position . 3357))
 ("dwm config"
  (filename . "~/dot/arch/suckless/.local/src/dwm/config.h")
  (front-context-string . "etails. */\n\n/* C")

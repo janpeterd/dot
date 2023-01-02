@@ -37,12 +37,12 @@
 
 
 (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size 15)
-      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
+      doom-variable-pitch-font (font-spec :family "Noto Sans" :size 15)
       doom-big-font (font-spec :family "Hack Nerd Font Mono" :size 24))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t
+(setq display-line-numbers-type "relative"
       display-time-24hr-format t
       display-time-day-and-date t)
 
@@ -86,56 +86,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 ;; add to $DOOkDIR/config.el
-
-;; DEBUGGER
-(require 'dap-python)
-(setq dap-python-debugger 'debugpy)
-(setq dap-python-terminal '"/usr/local/bin/st -e")
-
-(defun update_var_on_debug_next ()
-  (interactive)
-  (dap-next () )
-  (dap-ui-locals)
-  (dap-ui-locals))
-
-(defun double-ui-locals ()
-  (interactive)
-  (dap-ui-locals)
-  (dap-ui-locals))
-
-(map! :map dap-mode-map
-      :leader
-      :prefix ("d" . "dap")
-      ;; basics
-      :desc "dap next"          "n" #'dap-next
-      :desc "dap next & update" "m" #'update_var_on_debug_next
-      :desc "dap step in"       "i" #'dap-step-in
-      :desc "dap step out"      "o" #'dap-step-out
-      :desc "dap continue"      "c" #'dap-continue
-      :desc "dap ui locals"     "l" #'double-ui-locals
-      :desc "dap hydra"         "h" #'dap-hydra
-      :desc "dap debug restart" "r" #'dap-debug-restart
-      :desc "dap debug"         "s" #'dap-debug
-
-      ;; debug
-      :prefix ("dd" . "Debug")
-      :desc "dap debug recent"  "r" #'dap-debug-recent
-      :desc "dap debug last"    "l" #'dap-debug-last
-
-      ;; eval
-      :prefix ("de" . "Eval")
-      :desc "eval"                "e" #'dap-eval
-      :desc "eval region"         "r" #'dap-eval-region
-      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
-      :desc "add expression"      "a" #'dap-ui-expressions-add
-      :desc "remove expression"   "d" #'dap-ui-expressions-remove
-
-      :prefix ("db" . "Breakpoint")
-      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
-      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
-      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
-      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
-
 
 ;; TRANSPARANCY
 (set-frame-parameter (selected-frame) 'alpha '(90 . 85))
