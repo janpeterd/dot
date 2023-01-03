@@ -2,16 +2,21 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("config"
+(("home"
+ (filename . "~/")
+ (front-context-string . "Code\n  drwxr-xr-")
+ (rear-context-string . "68 Dec 25 19:34 ")
+ (position . 799))
+("config"
  (filename . "~/.config/")
  (front-context-string . ".deadline\n  drwx")
  (rear-context-string . "0K Jul 25 12:07 ")
  (position . 116))
 ("org-capture-last-stored"
  (filename . "~/Documents/Notes/journal.org")
- (front-context-string . "**** [2023-01-02")
- (rear-context-string . "23-01-02 Monday\n")
- (position . 3357))
+ (front-context-string . "**** [2023-01-03")
+ (rear-context-string . "3-01-03 Tuesday\n")
+ (position . 5090))
 ("dwm config"
  (filename . "~/dot/arch/suckless/.local/src/dwm/config.h")
  (front-context-string . "etails. */\n\n/* C")
