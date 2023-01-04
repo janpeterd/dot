@@ -5,7 +5,7 @@ reload-time 3
 # connect to my freshrss instance, over tailscale ip
 urls-source "freshrss"
 freshrss-passwordeval "gpg --decrypt ~/.config/newsboat/password.gpg"
-freshrss-url "http:///100.99.155.30:3333/api/greader.php"
+freshrss-url "http:///jpserver:3333/api/greader.php"
 freshrss-login "jp"
 freshrss-min-items 100
 freshrss-show-special-feeds "false"
