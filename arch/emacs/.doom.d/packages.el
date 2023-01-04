@@ -50,3 +50,4 @@
 ;(unpin! t)
 
 (package! platformio-mode)
+(package! anaconda-mode :disable)

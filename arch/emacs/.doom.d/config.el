@@ -6,7 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "Jan-Peter Dhallé")
+(setq user-full-name "Jan-Peter Dhallé"
+      user-mail-address "janpeter.dhalle@gmail.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -45,14 +46,15 @@
 (setq display-line-numbers-type 'relative
       display-time-24hr-format t
       display-time-day-and-date nil)
-
 (display-time)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Documents/Notes")
-(setq org-startup-with-inline-images t)
 
+
+;; Bookmark directory
+(setq bookmark-default-file "~/.doom.d/bookmarks")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -109,31 +111,60 @@
       :desc "toggle transparency"       "t" #'toggle-transparency)
 
 
-;; IDE-layout (toggle eshell and treemacs)
-(defun ide_layout ()
-  (interactive)
-  (+vterm/toggle () )
-  (minimap-mode)
-  (treemacs))
-(map! :map ide-layout
-      :leader
-      :prefix ("t" . "toggle")
-      :desc "toggle IDE-layout"        "i" #'ide_layout)
-
-(setq ispell-dictionary "english")
-(setq treemacs-width 26)
-
-(after! vterm
-  (set-popup-rule! "*doom:vterm-popup:main" :size 0.20 :vslot -4 :select t :quit nil :ttl 0)
-  (setq vterm-shell "/bin/bash")
-  )
-
 ;; Enable ccls for all c++ files, and platformio-mode only
 ;; when needed (platformio.ini present in project root).
 (add-hook 'c++-mode-hook (lambda ()
-        (lsp-deferred)
-        (platformio-conditionally-enable)))
+                           (lsp-deferred)
+                           (platformio-conditionally-enable)))
 
 
+;; List bookmarks binding
+(map! :leader
+      (:prefix ("b". "buffer")
+       :desc "List bookmarks" "L" #'list-bookmarks
+       :desc "Save current bookmarks to bookmark file" "w" #'bookmark-save))
 
-(setq bookmark-default-file "~/.doom.d/bookmarks")
+;; This updates emacs buffer when the file gets modified from outside of emacs
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+
+;; DAP debugging in python
+(require 'dap-python)
+
+(after! dap-mode
+  (setq dap-python-debugger 'debugpy))
+
+(map! :map dap-mode-map
+      :leader
+      :prefix ("d" . "dap")
+      ;; basics
+      :desc "dap next"          "n" #'dap-next
+      :desc "dap step in"       "i" #'dap-step-in
+      :desc "dap step out"      "o" #'dap-step-out
+      :desc "dap continue"      "c" #'dap-continue
+      :desc "dap hydra"         "h" #'dap-hydra
+      :desc "dap debug restart" "r" #'dap-debug-restart
+      :desc "dap debug"         "s" #'dap-debug
+
+      ;; debug
+      :prefix ("dd" . "Debug")
+      :desc "dap debug recent"  "r" #'dap-debug-recent
+      :desc "dap debug last"    "l" #'dap-debug-last
+
+      ;; eval
+      :prefix ("de" . "Eval")
+      :desc "eval"                "e" #'dap-eval
+      :desc "eval region"         "r" #'dap-eval-region
+      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
+      :desc "add expression"      "a" #'dap-ui-expressions-add
+      :desc "remove expression"   "d" #'dap-ui-expressions-remove
+
+      :prefix ("db" . "Breakpoint")
+      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
+      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
+      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
+      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+
+(after! writeroom-mode
+  (global-writeroom-mode)
+  (add-to-list 'writeroom-major-modes 'org-mode))

@@ -4,9 +4,9 @@
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("home"
  (filename . "~/")
- (front-context-string . ".abook\n  drwxr-x")
- (rear-context-string . "0K Oct  4 15:40 ")
- (position . 111))
+ (front-context-string . "Code\n  drwxr-xr-")
+ (rear-context-string . "68 Dec 25 19:34 ")
+ (position . 799))
 ("config"
  (filename . "~/.config/")
  (front-context-string . ".deadline\n  drwx")
