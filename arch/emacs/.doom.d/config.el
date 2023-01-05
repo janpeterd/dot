@@ -108,7 +108,7 @@
 (map! :map toggle-transparency
       :leader
       :prefix ("t" . "toggle")
-      :desc "toggle transparency"       "t" #'toggle-transparency)
+      :desc "toggle transparency"       "T" #'toggle-transparency)
 
 
 ;; Enable ccls for all c++ files, and platformio-mode only
