@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Notes"
+(("wallpapers"
+ (filename . "/data/harddrive/Pictures/wallpapers/")
+ (front-context-string . "0zxp4w.jpg\n  -rw")
+ (rear-context-string . "5M Sep 24 11:46 ")
+ (position . 187))
+("Notes"
  (filename . "~/Documents/Notes/")
  (front-context-string . "roam\n  -rw-r--r-")
  (rear-context-string . "0K Jan  2 19:29 ")

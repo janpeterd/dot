@@ -174,7 +174,7 @@
 
 
 ;; Org-Agenda
-(after! org
+(after! org-agenda
   (setq org-agenda-files '("/home/jp/Documents/Notes/todo.org")
         org-agenda-block-separator 8411
         org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
