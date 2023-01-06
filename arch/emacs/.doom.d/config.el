@@ -43,7 +43,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative
+(setq display-line-numbers-type 'visual
       display-time-24hr-format t
       display-time-day-and-date nil)
 (display-time)
@@ -165,6 +165,37 @@
       :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
       :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
 
+;; Writeroom mode
 (after! writeroom-mode
-  (global-writeroom-mode)
-  (add-to-list 'writeroom-major-modes 'org-mode))
+  (add-to-list 'writeroom-major-modes 'org-mode) ; add org-mode to the list of writeroom modes
+  (global-writeroom-mode)      ; automatically enable it for text and org-mode
+  (setq writeroom-mode-line t) ; keep the modeline
+)
+
+
+;; Org-Agenda
+(after! org
+  (setq org-agenda-files '("/home/jp/Documents/Notes/todo.org")
+        org-agenda-block-separator 8411
+        org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
+                '((sequence
+                "TODO(t)"           ; A task that is ready to be tackled
+                "[ ](T)"           ; A task that is ready to be tackled
+                "SCHOOL(s)"           ; A task that is ready to be tackled
+                "BLOG(b)"           ; Blog writing assignments
+                "PROJ(p)"           ; A project that contains other tasks
+                "WAIT(w)"           ; Something is holding up this task
+                "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+                "DONE(d)"           ; Task has been completed
+                "CANCELLED(c)" )) ; Task has been cancelled
+        org-agenda-custom-commands
+        '(("v" "A better agenda view"
+        ((tags "PRIORITY=\"A\""
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                (org-agenda-overriding-header "High-priority unfinished tasks:")))
+        (tags "deadline"
+                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
+                (org-agenda-overriding-header "Upcoming Deadlines:")))
+
+        (agenda "")
+        (alltodo ""))))))

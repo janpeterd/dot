@@ -2,7 +2,22 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("home"
+(("Notes"
+ (filename . "~/Documents/Notes/")
+ (front-context-string . "roam\n  -rw-r--r-")
+ (rear-context-string . "0K Jan  2 19:29 ")
+ (position . 279))
+("isabel-dhalle"
+ (filename . "~/Code/repos/isabel-dhalle/")
+ (front-context-string . "index.html\n  -rw")
+ (rear-context-string . "3K Jan  5 17:15 ")
+ (position . 652))
+("sc "
+ (filename . "~/.local/bin/")
+ (front-context-string . "cron\n  drwxr-xr-")
+ (rear-context-string . "0K Sep 17 22:10 ")
+ (position . 117))
+("home"
  (filename . "~/")
  (front-context-string . "Code\n  drwxr-xr-")
  (rear-context-string . "68 Dec 25 19:34 ")
