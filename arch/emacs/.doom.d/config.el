@@ -33,7 +33,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 
-(setq doom-theme 'doom-gruvbox
+;; (setq doom-theme 'doom-gruvbox
+(setq doom-theme 'doom-ir-black ; black theme
       fancy-splash-image "~/.doom.d/gnu.png")
 
 
@@ -41,8 +42,6 @@
       doom-variable-pitch-font (font-spec :family "Noto Sans" :size 15)
       doom-big-font (font-spec :family "Hack Nerd Font Mono" :size 24))
 
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'visual
       display-time-24hr-format t
       display-time-day-and-date nil)
@@ -50,7 +49,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/Documents/Notes")
+(setq org-directory "~/Documents/doom/Notes")
 
 
 ;; Bookmark directory
@@ -168,34 +167,57 @@
 ;; Writeroom mode
 (after! writeroom-mode
   (add-to-list 'writeroom-major-modes 'org-mode) ; add org-mode to the list of writeroom modes
-  (global-writeroom-mode)      ; automatically enable it for text and org-mode
   (setq writeroom-mode-line t) ; keep the modeline
 )
+(global-writeroom-mode)      ; automatically enable it for text and org-mode
 
+;; Org
+(after! org
+  (setq org-agenda-files '("/home/jp/Documents/doom/Notes/todo.org")
+        org-todo-keywords      ; This overwrites the default Doom org-todo-keywords
+        ;; General Task management
+        '((sequence
+           "TODO(t)"           ; A task that is ready to be tackled
+           "[ ](T)"            ; A subtask that can be ticked off
+           "PROJ(p)"           ; A project that contains other tasks
+           "APPOINTMENT(a)"    ; An appointment with someone
+           "WAIT(w)"           ; Something is holding up this task
+           "|"                 ; The pipe necessary to separate "active" states and "inactive" states
+           "DONE(d)"           ; Task has been completed
+           "CANCELLED(c)" )    ; Task has been cancelled
 
-;; Org-Agenda
-(after! org-agenda
-  (setq org-agenda-files '("/home/jp/Documents/Notes/todo.org")
-        org-agenda-block-separator 8411
-        org-todo-keywords        ; This overwrites the default Doom org-todo-keywords
-                '((sequence
-                "TODO(t)"           ; A task that is ready to be tackled
-                "[ ](T)"           ; A task that is ready to be tackled
-                "SCHOOL(s)"           ; A task that is ready to be tackled
-                "BLOG(b)"           ; Blog writing assignments
-                "PROJ(p)"           ; A project that contains other tasks
-                "WAIT(w)"           ; Something is holding up this task
-                "|"                 ; The pipe necessary to separate "active" states and "inactive" states
-                "DONE(d)"           ; Task has been completed
-                "CANCELLED(c)" )) ; Task has been cancelled
-        org-agenda-custom-commands
-        '(("v" "A better agenda view"
-        ((tags "PRIORITY=\"A\""
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                (org-agenda-overriding-header "High-priority unfinished tasks:")))
-        (tags "deadline"
-                ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
-                (org-agenda-overriding-header "Upcoming Deadlines:")))
+          ;; Tasks that have to do with School
+          (sequence
+           "SCHOOL(s)"         ; School tasks
+           "EXAM(e)"           ; Big Exam
+           "|" )               ; The pipe necessary to separate "active" states and "inactive" states
 
-        (agenda "")
-        (alltodo ""))))))
+          (sequence
+           "HEALTH(h)"         ; Health related
+           "GROW(g)"           ; Personal Growth related
+           "GOAL(G)"           ; A bigger lifegoal that needs to be planned
+           "|" ))              ; The pipe necessary to separate "active" states and "inactive" states
+        org-columns-default-format "%60ITEM(Task) %TODO %6Effort(Estim){:}  %6CLOCKSUM(Clock) %TAGS"
+        org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t%-6e% s")
+                                   (todo . " %i %-12:c %-6e")
+                                   (tags . " %i %-12:c")
+                                   (search . " %i %-12:c"))))
+ (setq hl-todo-keyword-faces
+	'(("TODO"   . "#CC9393")
+	  ("DEBUG"  . "#A020F0")
+          ("HOLD"   . "#D0BF8F")
+          ("NEXT"   . "#DCA3A3")
+          ("THEM"   . "#DC8CC3")
+          ("PROG"   . "#7CB8BB")
+          ("OKAY"   . "#7CB8BB")
+          ("SCHOOL" . "#A020F0")
+          ("EXAM"   . "#FF0000")
+          ("DONT"   . "#5F7F5F")
+          ("FAIL"   . "#8C5353")
+          ("DONE"   . "#AFD8AF")
+          ("NOTE"   . "#D0BF8F")
+          ("KLUDGE" . "#D0BF8F")
+          ("HACK"   . "#D0BF8F")
+          ("TEMP"   . "#D0BF8F")
+          ("FIXME"  . "#CC9393")
+          ("XXX+"   . "#CC9393")))
