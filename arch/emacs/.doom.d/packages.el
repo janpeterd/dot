@@ -50,4 +50,5 @@
 ;(unpin! t)
 
 (package! platformio-mode)
+(package! theme-magic)
 (package! anaconda-mode :disable t)

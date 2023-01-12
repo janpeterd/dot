@@ -1,5 +1,5 @@
 !! Transparency (0-1):
-*.alpha: 0.85
+*.alpha: 0.90
 
 !! Set a default font and font size as below:
 *.font: Hack Nerd Font Mono:size=10

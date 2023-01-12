@@ -33,8 +33,8 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 
-;; (setq doom-theme 'doom-gruvbox
-(setq doom-theme 'doom-ir-black ; black theme
+;;(setq doom-theme 'doom-gruvbox
+(setq doom-theme 'doom-peacock
       fancy-splash-image "~/.doom.d/gnu.png")
 
 
@@ -128,8 +128,6 @@
 (setq global-auto-revert-non-file-buffers t)
 
 ;; DAP debugging in python
-(require 'dap-python)
-
 (after! dap-mode
   (setq dap-python-debugger 'debugpy))
 
@@ -174,6 +172,7 @@
 ;; Org
 (after! org
   (setq org-agenda-files '("/home/jp/Documents/doom/Notes/todo.org")
+        org-agenda-skip-scheduled-if-done t  ; don't schedule tasks if they are done. Deadlines will still be shown
         org-todo-keywords      ; This overwrites the default Doom org-todo-keywords
         ;; General Task management
         '((sequence
@@ -194,9 +193,18 @@
 
           (sequence
            "HEALTH(h)"         ; Health related
+           "REMINDER(r)"         ; reminder
            "GROW(g)"           ; Personal Growth related
            "GOAL(G)"           ; A bigger lifegoal that needs to be planned
            "|" ))              ; The pipe necessary to separate "active" states and "inactive" states
+        org-todo-keyword-faces '(
+                                 ("SCHOOL" . (:foreground "#A020F0" :weight bold))
+                                 ("EXAM" . (:foreground "#FF0000" :background "000000" :weight bold))
+                                 ("GROW" . (:foreground "#16820D" :weight bold))
+                                 ("HEALTH" . (:foreground "#0088EB" :weight bold))
+                                 ("GOAL" . (:foreground "#EB8D00" :weight bold))
+                                 )
+
         org-columns-default-format "%60ITEM(Task) %TODO %6Effort(Estim){:}  %6CLOCKSUM(Clock) %TAGS"
         org-agenda-prefix-format '((agenda . " %i %-12:c%?-12t%-6e% s")
                                    (todo . " %i %-12:c %-6e")
@@ -221,3 +229,16 @@
           ("TEMP"   . "#D0BF8F")
           ("FIXME"  . "#CC9393")
           ("XXX+"   . "#CC9393")))
+
+
+
+
+(defun launch-agenda ()
+  (interactive)
+  (+workspace/rename "Agenda")
+  (org-agenda-list)
+  (org-agenda-goto-today))
+
+
+;; Set system theme according to emacs theme, depends on pywal 😜
+(theme-magic-export-theme-mode)

@@ -68,7 +68,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+	static const char *tags[] = { " Main", " Web", " Media", " Emacs", " Games", " Edit", " Agenda", " Social", " Mail" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -77,6 +77,7 @@ static const Rule rules[] = {
 	*/
 	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
 	{ "thunderbird",      NULL,        NULL,       	    1 << 8,       0,           0,         0,        -1 },
+	{ "agenda",      NULL,        NULL,       	    1 << 6,       0,           0,         0,        -1 },
 	{ "discord",      NULL,        NULL,       	    1 << 7,       0,           0,         0,        -1 },
 	{ "Spotify",      NULL,        NULL,       	    1 << 6,       0,           0,         0,        -1 },
 	{ TERMCLASS,  NULL,       NULL,       	    0,            0,           1,         0,        -1 },
@@ -191,7 +192,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_q,		killclient,	{0} },
 	/* { MODKEY|ShiftMask,		XK_q,		spawn,		SHCMD("dmenu-keyboard") }, */
 	{ MODKEY,			XK_w,		spawn,		{.v = (const char*[]){ BROWSER, NULL } } },
-	{ MODKEY|ShiftMask,		XK_w,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "bpytop", NULL } } },
+	{ MODKEY|ShiftMask,		XK_w,		spawn,		{.v = (const char*[]){ TERMINAL, "-e", "btop", NULL } } },
 	/* { MODKEY,			XK_e,		spawn,		SHCMD(TERMINAL " -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook") }, */
 	{ MODKEY,			XK_e,		spawn,		SHCMD("emacsclient -c -a 'emacs'") },
 	{ MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD(TERMINAL " -e abook -C ~/.config/abook/abookrc --datafile ~/.local/share/abook/jp-addressbook") },
@@ -286,7 +287,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_F6,		spawn,		SHCMD("") },
 	{ MODKEY,			XK_F7,		spawn,		{.v = (const char*[]){ "td-toggle", NULL } } },
 	{ MODKEY,			XK_F8,		spawn,		{.v = (const char*[]){ "mw", "-Y", NULL } } },
-	{ MODKEY,			XK_F9,		spawn,		SHCMD("emacsclient -c -a 'emacs' --eval '(org-agenda-list)'") },
+	{ MODKEY,			XK_F9,		spawn,		SHCMD("emacsclient -name agenda -c -a 'emacs' --eval '(launch-agenda)'") },
 	{ MODKEY,			XK_F10,		spawn,		{.v = (const char*[]){ "dmenuumount", NULL } } },
 	{ MODKEY,			XK_F11,		spawn,		SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
 	{ MODKEY,			XK_F12,		spawn,		SHCMD("remaps") },

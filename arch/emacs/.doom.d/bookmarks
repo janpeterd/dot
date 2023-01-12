@@ -8,7 +8,7 @@
  (rear-context-string . "5M Sep 24 11:46 ")
  (position . 187))
 ("Notes"
- (filename . "~/Documents/Notes/")
+ (filename . "~/Documents/doom/Notes/")
  (front-context-string . "roam\n  -rw-r--r-")
  (rear-context-string . "0K Jan  2 19:29 ")
  (position . 279))

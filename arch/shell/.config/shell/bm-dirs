@@ -18,11 +18,13 @@ h    /home/jp
 m    /home/jp/Music
 mn   /mnt
 med  /media
-pp   /home/jp/Pictures
+pp   /home/jp/Pictures/
+wp   /home/jp/Pictures/Pictures/wallpapers
 sc   /home/jp/.local/bin
 vv   /home/jp/Videos
 hom  /srv/http/homepage
 http /srv/http
+
 #school
 sch  /home/jp/school
 sch_py  /home/jp/school/ITF1/SEM1/ApplicationDevInPython

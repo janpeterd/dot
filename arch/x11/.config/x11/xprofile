@@ -10,6 +10,7 @@ gsettings set org.gnome.desktop.interface color-scheme prefer-dark &
 picom --experimental-backend  & # for nice blur, animations and rounded corners!
 remaps &		# run the remaps script, switching caps/esc and more; check it for more info
 sleep 10 && aw-qt &
+musnify-mpd &
 
 # Per host:
 if [[ "$(cat /etc/hostname)" == "larch" ]]; then
@@ -20,7 +21,7 @@ elif [[ "$(cat /etc/hostname)" == "archlinux" ]]; then
 	jellyfin-wrap &		# jellyfin shim via tailscale when available
 fi
 
-autostart="mpd dunst unclutter pipewire udiskie nm-applet blueman-applet gotify-desktop musnify-mpd thunderbird"
+autostart="mpd dunst unclutter pipewire udiskie nm-applet blueman-applet gotify-desktop thunderbird"
 
 for program in $autostart; do
 	pidof -s "$program" || "$program" &
