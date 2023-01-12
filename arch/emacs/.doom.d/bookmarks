@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("wallpapers"
+(("st config"
+ (filename . "~/dot/arch/suckless/.local/src/st/config.h")
+ (front-context-string . "/* See LICENSE f")
+ (rear-context-string)
+ (position . 1))
+("wallpapers"
  (filename . "/data/harddrive/Pictures/wallpapers/")
  (front-context-string . "0zxp4w.jpg\n  -rw")
  (rear-context-string . "5M Sep 24 11:46 ")

@@ -37,6 +37,7 @@
 (setq doom-theme 'doom-peacock
       fancy-splash-image "~/.doom.d/gnu.png")
 
+(setq initial-scratch-message nil)
 
 (setq doom-font (font-spec :family "Hack Nerd Font Mono" :size 15)
       doom-variable-pitch-font (font-spec :family "Noto Sans" :size 15)
@@ -89,8 +90,8 @@
 ;; add to $DOOkDIR/config.el
 
 ;; TRANSPARANCY
-(set-frame-parameter (selected-frame) 'alpha '(90 . 85))
-(add-to-list 'default-frame-alist '(alpha . (90 . 85)))
+(set-frame-parameter (selected-frame) 'alpha '(100 . 85))
+(add-to-list 'default-frame-alist '(alpha . (100 . 85)))
 
 (defun toggle-transparency ()
   (interactive)
@@ -231,8 +232,7 @@
           ("XXX+"   . "#CC9393")))
 
 
-
-
+;; A little script that I have bound to a keybinding in my WM
 (defun launch-agenda ()
   (interactive)
   (+workspace/rename "Agenda")
@@ -242,3 +242,32 @@
 
 ;; Set system theme according to emacs theme, depends on pywal 😜
 (theme-magic-export-theme-mode)
+
+
+;; Alerts
+
+(use-package! org-alert
+  :ensure t
+  :custom (alert-default-style 'libnotify)
+  :config
+  (setq org-alert-interval 300
+        org-alert-notification-title "Org Alert")
+
+
+  (org-alert-enable))
+
+
+;; Add a 'vterm' option which opens in the same directory, not the project root.
+
+(defun vterm-working-dir ()
+  (interactive)
+  (if (get-buffer "*vterm*")
+    (kill-buffer "*vterm*"))
+    (vterm))
+
+;; SPC t RET to open
+(map! :map vterm-working-dir
+      :leader
+      :prefix ("t" . "toggle")
+      :desc "Open vterm in working directory"       "RET" #'vterm-working-dir)
+

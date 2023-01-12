@@ -221,7 +221,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_a,		defaultgaps,	{0} },
 	{ MODKEY,			XK_s,		togglesticky,	{0} },
 	{ MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("dmenussh") },
-	{ MODKEY,			XK_d,		spawn,          {.v = (const char*[]){ "dmenu_run", NULL } } },
+	/* { MODKEY,			XK_d,		spawn,          {.v = (const char*[]){ "dmenu_run", NULL } } }, */
+	{ MODKEY,			XK_d,		spawn,          {.v = (const char*[]){ "/home/jp/.config/rofi/launchers/type-1/launcher.sh", NULL } } },
 	{ MODKEY|ShiftMask,		XK_d,		spawn,		{.v = (const char*[]){ "passmenu-otp", NULL } } },
 	{ MODKEY,			XK_f,		togglefullscr,	{0} },
 	{ MODKEY|ShiftMask,		XK_f,		setlayout,	{.v = &layouts[8]} },
@@ -274,8 +275,8 @@ static Key keys[] = {
 
 
 	{ MODKEY,			XK_F1,		spawn,		SHCMD("picom-trans -c --toggle 100") },
-	{ MODKEY,			XK_F2,		spawn,		SHCMD("picom-trans -c +5") },
-	{ MODKEY|ShiftMask,			XK_F2,		spawn,		SHCMD("picom-trans -c -5") },
+	{ MODKEY,			XK_F2,		spawn,		SHCMD("picom-trans -c -5") },
+	{ MODKEY|ShiftMask,			XK_F2,		spawn,		SHCMD("picom-trans -c +5") },
 
 
 	{ MODKEY,			XK_minus,	spawn,		SHCMD("pamixer -d 5; kill -44 $(pidof dwmblocks)") },
@@ -287,7 +288,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_F6,		spawn,		SHCMD("") },
 	{ MODKEY,			XK_F7,		spawn,		{.v = (const char*[]){ "td-toggle", NULL } } },
 	{ MODKEY,			XK_F8,		spawn,		{.v = (const char*[]){ "mw", "-Y", NULL } } },
-	{ MODKEY,			XK_F9,		spawn,		SHCMD("emacsclient -name agenda -c -a 'emacs' --eval '(launch-agenda)'") },
+	{ MODKEY,			XK_F9,		spawn,		SHCMD("emacsclient -c -a 'emacs' --eval '(launch-agenda)'") },
 	{ MODKEY,			XK_F10,		spawn,		{.v = (const char*[]){ "dmenuumount", NULL } } },
 	{ MODKEY,			XK_F11,		spawn,		SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
 	{ MODKEY,			XK_F12,		spawn,		SHCMD("remaps") },

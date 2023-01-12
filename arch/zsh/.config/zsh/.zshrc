@@ -6,6 +6,7 @@ PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magent
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
 setopt interactive_comments
+setopt EXTENDED_HISTORY
 
 # History in cache directory:
 HISTSIZE=10000000
@@ -77,6 +78,13 @@ bindkey '^e' edit-command-line
 bindkey -M vicmd '^[[P' vi-delete-char
 bindkey -M vicmd '^e' edit-command-line
 bindkey -M visual '^[[P' vi-delete
+
+# Custom commands
+#
+# History
+hist() {fc -lim "*$@*" 1 | fzf --tac | cut -c 26- | xclip -sel c}
+
+bindkey -s '^h' '^uhist\n'
 
 # Load syntax highlighting; should be last.
 source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null

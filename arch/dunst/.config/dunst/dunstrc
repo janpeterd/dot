@@ -8,12 +8,14 @@
     padding = 15
     horizontal_padding = 15
     transparency = 35
-    font = "ubuntu 11"
+    font = "Noto Sans 11"
     format = "<b>%s</b>\n%b"
     max_icon_size = 75
     separator_height = 6
     vertical_alignment = center
     hide_duplicate_count = true
+    markup = full
+    show indicators = yes
 
         # Paths to default icons.
     icon_path = /usr/share/icons/Adwaita/scalable

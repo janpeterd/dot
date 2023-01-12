@@ -49,6 +49,8 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! platformio-mode)
-(package! theme-magic)
-(package! anaconda-mode :disable t)
+(package! platformio-mode)      ; IOT development
+(package! theme-magic)  ; Emacs theme = system theme
+(package! alert)  ; Notifications
+(package! org-alert)  ; Org-mode notifications
+(package! anaconda-mode :disable t)     ; HACK
